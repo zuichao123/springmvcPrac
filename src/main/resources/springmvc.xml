@@ -8,7 +8,7 @@
        http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 
     <!-- 配置自动扫描 -->
-    <context:component-scan base-package="com.sunjian.controller"></context:component-scan>
+    <context:component-scan base-package="com.sunjian"></context:component-scan>
 
     <!-- 配置视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -34,5 +34,16 @@
             </list>
         </property>
     </bean>
+
+    <!--文件上传-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 处理文件名中文乱码 -->
+        <property name="defaultEncoding" value="utf-8"></property>
+        <!-- 多文件上传总⼤小的上限 100M -->
+        <property name="maxUploadSize" value="104857600"></property>
+        <!-- 单文件大小的上限 10M -->
+        <property name="maxUploadSizePerFile" value="10485760"></property>
+    </bean>
+
     <mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven>
 </beans>
